@@ -16,6 +16,11 @@ namespace FarmInterface
         private ItemContainer rootContainer = new ItemContainer("Farm", 0.00m, 0, 0, 0, 0, 0);
         private FarmPanel farmPanel;
 
+        //These are for drone movement
+        private Point targetPosition;
+        private const int DroneSpeed = 5;
+        private bool returningToStart = false;
+
         private static MainForm instance = null;
 
         // Public static method to get the instance
@@ -163,7 +168,54 @@ namespace FarmInterface
 
         private void inspectButton_Click(object sender, EventArgs e)
         {
+            if (treeView.SelectedNode != null
+                && treeView.SelectedNode.Tag is ElementalUnit selectedUnit
+                && selectedUnit.Name != "Drone")
+            {
+                Point targetPosition = new Point(selectedUnit.LocationX, selectedUnit.LocationY);
+
+                StartDroneAnimation(targetPosition);
+            }
 
         }
+
+        private void StartDroneAnimation(Point target)
+        {
+            targetPosition = target;
+            animationTimer.Start();
+        }
+
+        private void animationTimer_Tick(object sender, EventArgs e)
+        {
+            Point currentPosition = returningToStart ? farmPanel.DroneStartPosition : targetPosition;
+
+            var direction = new Point(currentPosition.X - farmPanel.DroneRectangle.X,
+                                      currentPosition.Y - farmPanel.DroneRectangle.Y);
+
+            var distance = Math.Sqrt(direction.X * direction.X + direction.Y * direction.Y);
+            if (distance < DroneSpeed)
+            {
+                if (!returningToStart)
+                {
+                    // Drone reached the target, now return to start
+                    returningToStart = true;
+                    return; // Exit this tick, next tick will move towards start
+                }
+                else
+                {
+                    // Drone returned to start, stop the animation
+                    animationTimer.Stop();
+                    returningToStart = false;
+                    return;
+                }
+            }
+
+            // Normalize the direction and move the drone
+            var moveX = (int)(DroneSpeed * direction.X / distance);
+            var moveY = (int)(DroneSpeed * direction.Y / distance);
+            farmPanel.MoveDrone(farmPanel.DroneRectangle.X + moveX,
+                                farmPanel.DroneRectangle.Y + moveY);
+        }
+
     }
 }

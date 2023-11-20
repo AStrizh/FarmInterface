@@ -38,7 +38,7 @@
             this.treeExpand = new System.Windows.Forms.CheckBox();
             this.addButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.inspectButton = new System.Windows.Forms.Button();
@@ -137,6 +137,10 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Visualization";
             // 
+            // animationTimer
+            // 
+            this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
+            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -233,7 +237,7 @@
         private System.Windows.Forms.CheckBox treeExpand;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button scanButton;
         private System.Windows.Forms.Button inspectButton;

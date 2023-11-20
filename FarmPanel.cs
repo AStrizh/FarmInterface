@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,6 +11,8 @@ namespace FarmInterface
 {
     public class FarmPanel : Panel
     {
+        public Rectangle DroneRectangle { get; set; }
+        public Point DroneStartPosition { get; set; }
         public ElementalUnit RootContainer { get; set; }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -22,23 +25,39 @@ namespace FarmInterface
         {
             if (element == null) return;
 
-            // Draw each element as a rectangle
-            int x = element.LocationX;
-            int y = element.LocationY;
-            int width = (int)element.Width;
-            int length = (int)element.Length;
-
-            Rectangle rect = new Rectangle(x, y, width, length);
-            graphics.DrawRectangle(Pens.Black, rect);
-
-            if (element is ItemContainer container)
+            if (element.Name == "Drone")
             {
-                foreach (var child in container.Children)
+                // If DroneRectangle is not set, initialize it
+                if (DroneRectangle == default(Rectangle))
                 {
-                    DrawElement(child, graphics);
+                    DroneRectangle = new Rectangle(element.LocationX, element.LocationY,
+                                                   (int)element.Width, (int)element.Length);
+
+                    DroneStartPosition = new Point(element.LocationX, element.LocationY);
+                }
+
+                // Use the existing DroneRectangle to draw the drone
+                graphics.DrawRectangle(Pens.Black, DroneRectangle);
+            }
+            else
+            {
+                // Draw other elements as rectangles
+                Rectangle rect = new Rectangle(element.LocationX, element.LocationY,
+                                               (int)element.Width, (int)element.Length);
+                graphics.DrawRectangle(Pens.Black, rect);
+
+                // Recursive call for ItemContainers
+                if (element is ItemContainer container)
+                {
+                    foreach (var child in container.Children)
+                    {
+                        DrawElement(child, graphics);
+                    }
                 }
             }
         }
+
+
         public void DisplayLabels()
         {
             DisplayElementLabel(RootContainer);
@@ -65,6 +84,12 @@ namespace FarmInterface
                     DisplayElementLabel(child);
                 }
             }
+        }
+
+        public void MoveDrone(int x, int y)
+        {
+            DroneRectangle = new Rectangle(x, y, DroneRectangle.Width, DroneRectangle.Height);
+            this.Invalidate();
         }
     }
 }
