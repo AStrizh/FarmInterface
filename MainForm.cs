@@ -18,6 +18,17 @@ namespace FarmInterface
 
         private Timer animationTimer = new Timer();
         private int buttonSpeed = 5;
+        private static MainForm instance = null;
+
+        // Public static method to get the instance
+        public static MainForm GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MainForm();
+            }
+            return instance;
+        }
 
         public MainForm()
         {
@@ -183,6 +194,11 @@ namespace FarmInterface
                     }
                 }
             }
+        }
+
+        private void inspectButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
