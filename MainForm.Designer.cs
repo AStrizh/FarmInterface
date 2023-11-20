@@ -37,6 +37,8 @@
             this.treeExpand = new System.Windows.Forms.CheckBox();
             this.addButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.placeholderPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -46,7 +48,7 @@
             this.label1.Location = new System.Drawing.Point(76, 40);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 25);
+            this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Farm Items";
             // 
@@ -91,6 +93,7 @@
             // placeholderPanel
             // 
             this.placeholderPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.placeholderPanel.Controls.Add(this.button1);
             this.placeholderPanel.Location = new System.Drawing.Point(304, 65);
             this.placeholderPanel.Name = "placeholderPanel";
             this.placeholderPanel.Size = new System.Drawing.Size(600, 800);
@@ -101,7 +104,7 @@
             this.treeExpand.AutoSize = true;
             this.treeExpand.Location = new System.Drawing.Point(26, 353);
             this.treeExpand.Name = "treeExpand";
-            this.treeExpand.Size = new System.Drawing.Size(107, 20);
+            this.treeExpand.Size = new System.Drawing.Size(87, 17);
             this.treeExpand.TabIndex = 14;
             this.treeExpand.Text = "Expand Tree";
             this.treeExpand.UseVisualStyleBackColor = true;
@@ -124,9 +127,18 @@
             this.label2.Location = new System.Drawing.Point(299, 37);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 25);
+            this.label2.Size = new System.Drawing.Size(111, 20);
             this.label2.TabIndex = 16;
             this.label2.Text = "Visualization";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 45);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -142,6 +154,7 @@
             this.Controls.Add(this.placeholderPanel);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "MainForm";
+            this.placeholderPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,6 +171,7 @@
         private System.Windows.Forms.CheckBox treeExpand;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -16,7 +16,8 @@ namespace FarmInterface
         private ItemContainer rootContainer = new ItemContainer("Farm", 0.00m, 0, 0, 0, 0, 0);
         private FarmPanel farmPanel;
 
-
+        private Timer animationTimer = new Timer();
+        private int buttonSpeed = 5;
 
         public MainForm()
         {
@@ -25,6 +26,13 @@ namespace FarmInterface
             //farmComponents.Text = "root";
             TreeNode rootNode = new TreeNode("root");
             treeView.Nodes.Add(rootNode);
+
+            // Initialize the Timer
+            animationTimer.Interval = 16; // 60 frames per second
+            animationTimer.Tick += AnimationTimer_Tick;
+
+            // Start the animation
+            animationTimer.Start();
 
             //Replaces the placeholder panel displayed in design with the custom farmPanel
             farmPanel = new FarmPanel
@@ -39,6 +47,32 @@ namespace FarmInterface
 
             farmPanel.RootContainer = rootContainer;
         }
+
+        private void MoveButton(int deltaX)
+        {
+            // Move the button horizontally
+            button1.Location = new System.Drawing.Point(button1.Location.X + deltaX, button1.Location.Y);
+        }
+
+        private void AnimationTimer_Tick(object sender, EventArgs e)
+        {
+            // Move the button to the right
+            MoveButton(buttonSpeed);
+
+            // Check if the button is out of the panel's bounds
+            if (button1.Location.X + button1.Width > farmPanel.Width)
+            {
+                // Change the direction of movement
+                buttonSpeed = -buttonSpeed;
+            }
+            else if (button1.Location.X < farmPanel.Location.X)
+            {
+                // Change the direction of movement
+                buttonSpeed = Math.Abs(buttonSpeed);
+            }
+        }
+
+
 
         private void populate_Click(object sender, EventArgs e)
         {
