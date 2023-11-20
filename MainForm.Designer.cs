@@ -182,6 +182,7 @@
             this.scanButton.TabIndex = 1;
             this.scanButton.Text = "Scan";
             this.scanButton.UseVisualStyleBackColor = true;
+            this.scanButton.Click += new System.EventHandler(this.scanButton_Click);
             // 
             // inspectLabel
             // 

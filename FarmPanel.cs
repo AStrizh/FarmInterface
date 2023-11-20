@@ -36,7 +36,6 @@ namespace FarmInterface
                     DroneStartPosition = new Point(element.LocationX, element.LocationY);
                 }
 
-                // Use the existing DroneRectangle to draw the drone
                 graphics.DrawRectangle(Pens.Black, DroneRectangle);
             }
             else

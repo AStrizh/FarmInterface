@@ -21,6 +21,8 @@ namespace FarmInterface
         private const int DroneSpeed = 5;
         private bool returningToStart = false;
 
+        private List<Point> allElementPositions;
+
         private static MainForm instance = null;
 
         // Public static method to get the instance
@@ -69,7 +71,7 @@ namespace FarmInterface
         private void PopulateTreeView(ElementalUnit unit, TreeNodeCollection nodes)
         {
             TreeNode newNode = nodes.Add(unit.Name);
-            newNode.Tag = unit; // Storing the ElementalUnit object in the Tag property
+            newNode.Tag = unit;
 
             if (unit is ItemContainer container)
             {
@@ -181,41 +183,86 @@ namespace FarmInterface
 
         private void StartDroneAnimation(Point target)
         {
+            allElementPositions = new List<Point> { target }; 
             targetPosition = target;
+            returningToStart = false; 
             animationTimer.Start();
         }
 
+
         private void animationTimer_Tick(object sender, EventArgs e)
         {
-            Point currentPosition = returningToStart ? farmPanel.DroneStartPosition : targetPosition;
+            if (returningToStart && farmPanel.DroneRectangle.Location == farmPanel.DroneStartPosition)
+            {
+                // Drone has returned to start position
+                animationTimer.Stop();
+                returningToStart = false;
+                allElementPositions = null; 
+            }
 
-            var direction = new Point(currentPosition.X - farmPanel.DroneRectangle.X,
-                                      currentPosition.Y - farmPanel.DroneRectangle.Y);
-
+            var currentTarget = returningToStart ? farmPanel.DroneStartPosition : targetPosition;
+            var direction = new Point(currentTarget.X - farmPanel.DroneRectangle.X,
+                                      currentTarget.Y - farmPanel.DroneRectangle.Y);
             var distance = Math.Sqrt(direction.X * direction.X + direction.Y * direction.Y);
+
             if (distance < DroneSpeed)
             {
-                if (!returningToStart)
+                if (!returningToStart && allElementPositions != null && allElementPositions.Count > 0)
                 {
-                    // Drone reached the target, now return to start
-                    returningToStart = true;
-                    return; // Exit this tick, next tick will move towards start
+                    // Move to the next position in the scan
+                    targetPosition = allElementPositions[0];
+                    allElementPositions.RemoveAt(0);
                 }
                 else
                 {
-                    // Drone returned to start, stop the animation
-                    animationTimer.Stop();
-                    returningToStart = false;
-                    return;
+                    
+                    returningToStart = true;
                 }
+                return;
             }
 
-            // Normalize the direction and move the drone
             var moveX = (int)(DroneSpeed * direction.X / distance);
             var moveY = (int)(DroneSpeed * direction.Y / distance);
-            farmPanel.MoveDrone(farmPanel.DroneRectangle.X + moveX,
-                                farmPanel.DroneRectangle.Y + moveY);
+            farmPanel.MoveDrone(farmPanel.DroneRectangle.X + moveX, farmPanel.DroneRectangle.Y + moveY);
         }
 
+
+
+        private void StoreAllElementPositions()
+        {
+            allElementPositions = new List<Point>();
+            AddElementPositions(rootContainer);
+        }
+
+        private void AddElementPositions(ElementalUnit element)
+        {
+            if (element == null || element.Name == "Drone")
+                return;
+
+            allElementPositions.Add(new Point(element.LocationX, element.LocationY));
+
+            if (element is ItemContainer container)
+            {
+                foreach (var child in container.Children)
+                {
+                    AddElementPositions(child);
+                }
+            }
+        }
+
+        private void scanButton_Click(object sender, EventArgs e)
+        {
+            StoreAllElementPositions();
+            if (allElementPositions.Count > 0)
+            {
+                StartDroneScan();
+            }
+        }
+        private void StartDroneScan()
+        {
+            targetPosition = allElementPositions[0]; 
+            allElementPositions.RemoveAt(0); 
+            animationTimer.Start();
+        }
     }
 }
