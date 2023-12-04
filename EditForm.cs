@@ -22,9 +22,13 @@ namespace FarmInterface
 
         public EditForm(ElementalUnit unit) : this()
         {
-            InitializeComponent();
             unitToEdit = unit;
+            isEditMode = true;
             LoadUnitData();
+
+            // Hide radio buttons in edit mode
+            itemRadio.Visible = false;
+            itemContainerRadio.Visible = false;
         }
 
         // Overloaded constructor for adding a new element
