@@ -14,8 +14,6 @@ namespace FarmInterface
 
         string Name { get; set; }
         decimal PurchasePrice { get; set; }
-        decimal CurrentPrice { get; set; }
-
         int LocationX { get; set; }
         int LocationY { get; set; }
         double Length { get; set; }

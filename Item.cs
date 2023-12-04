@@ -8,8 +8,13 @@ namespace FarmInterface
 {
     internal class Item : AbstractItem
     {
-        //All functions inherited from parent
+
+        public decimal CurrentPrice { get; set; }
+
         public Item(string name, decimal purchasePrice, decimal currentPrice, int locationX, int locationY, double length, double width, double height)
-    : base(name, purchasePrice, currentPrice, locationX, locationY, length, width, height) { }
+            : base(name, purchasePrice, locationX, locationY, length, width, height)
+        {
+            CurrentPrice = currentPrice;
+        }
     }
 }

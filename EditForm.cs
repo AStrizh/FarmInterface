@@ -26,6 +26,20 @@ namespace FarmInterface
             isEditMode = true;
             LoadUnitData();
 
+            if (unit is Item item)
+            {
+                // Item-specific UI adjustments
+                currentPriceLabel.Visible = true;
+                currentPriceText.Visible = true;
+                currentPriceText.Text = item.CurrentPrice.ToString();
+            }
+            else if (unit is ItemContainer)
+            {
+                // Hide Item-specific fields for ItemContainer
+                currentPriceLabel.Visible = false;
+                currentPriceText.Visible = false;
+            }
+
             // Hide radio buttons in edit mode
             itemRadio.Visible = false;
             itemContainerRadio.Visible = false;
@@ -37,6 +51,10 @@ namespace FarmInterface
             InitializeComponent();
             isEditMode = false;
             // Make radio buttons visible
+            // Set initial visibility based on the selected radio button
+            currentPriceLabel.Visible = itemRadio.Checked;
+            currentPriceText.Visible = itemRadio.Checked;
+
             itemRadio.Visible = true;
             itemContainerRadio.Visible = true;
         }
@@ -46,13 +64,21 @@ namespace FarmInterface
 
             if (unitToEdit != null) { 
                 nameText.Text = unitToEdit.Name;
-                purchasepText.Text = unitToEdit.PurchasePrice.ToString();
-                currentpText.Text = unitToEdit.CurrentPrice.ToString();
+                purchasePriceText.Text = unitToEdit.PurchasePrice.ToString();
+
                 xLocText.Text = unitToEdit.LocationX.ToString();
                 yLocText.Text = unitToEdit.LocationY.ToString();
                 lengthText.Text = unitToEdit.Length.ToString();
                 widthText.Text = unitToEdit.Width.ToString();
-                heightText.Text = unitToEdit.Height.ToString();            
+                heightText.Text = unitToEdit.Height.ToString();
+
+                if (unitToEdit is Item item)
+                {
+                    // Item-specific UI adjustments
+                    currentPriceText.Text = item.CurrentPrice.ToString();
+                }
+
+
             }
 
         }
@@ -62,13 +88,18 @@ namespace FarmInterface
             if(isEditMode)
             {
                 unitToEdit.Name = nameText.Text;
-                unitToEdit.PurchasePrice = Decimal.Parse(purchasepText.Text);
-                unitToEdit.CurrentPrice = Decimal.Parse(currentpText.Text);
+                unitToEdit.PurchasePrice = Decimal.Parse(purchasePriceText.Text);
                 unitToEdit.LocationX = Int32.Parse(xLocText.Text);
                 unitToEdit.LocationY = Int32.Parse(yLocText.Text);
                 unitToEdit.Length = Double.Parse(lengthText.Text);
                 unitToEdit.Width= Double.Parse(widthText.Text);
                 unitToEdit.Height = Double.Parse(heightText.Text);
+
+                if (unitToEdit is Item item)
+                {
+                    // Item-specific UI adjustments
+                    currentPriceText.Text = item.CurrentPrice.ToString();
+                }
             }
             else
             {
@@ -78,8 +109,7 @@ namespace FarmInterface
                 {
                     newElement = new ItemContainer(
                         nameText.Text,
-                        Decimal.Parse(purchasepText.Text),
-                        Decimal.Parse(currentpText.Text),
+                        Decimal.Parse(purchasePriceText.Text),
                         Int32.Parse(xLocText.Text), 
                         Int32.Parse(yLocText.Text), 
                         Double.Parse(lengthText.Text), 
@@ -91,8 +121,8 @@ namespace FarmInterface
 
                     newElement = new Item(
                     nameText.Text,
-                    Decimal.Parse(purchasepText.Text),
-                    Decimal.Parse(currentpText.Text),
+                    Decimal.Parse(purchasePriceText.Text),
+                    Decimal.Parse(currentPriceText.Text),
                     Int32.Parse(xLocText.Text),
                     Int32.Parse(yLocText.Text),
                     Double.Parse(lengthText.Text),
@@ -105,6 +135,26 @@ namespace FarmInterface
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void itemRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (itemRadio.Checked)
+            {
+                // If Item is selected, show Current Price field
+                currentPriceLabel.Visible = true;
+                currentPriceText.Visible = true;
+            }
+        }
+
+        private void itemContainerRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (itemContainerRadio.Checked)
+            {
+                // If Item Container is selected, hide Current Price field
+                currentPriceLabel.Visible = false;
+                currentPriceText.Visible = false;
+            }
         }
     }
 }

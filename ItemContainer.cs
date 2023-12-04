@@ -10,8 +10,8 @@ namespace FarmInterface
     {
         public List<ElementalUnit> Children { get; private set; } = new List<ElementalUnit>();
 
-        public ItemContainer(string name, decimal purchasePrice, decimal currentPrice, int locationX, int locationY, double length, double width, double height)
-    : base(name, purchasePrice, currentPrice, locationX, locationY, length, width, height) { }
+        public ItemContainer(string name, decimal purchasePrice, int locationX, int locationY, double length, double width, double height)
+    : base(name, purchasePrice, locationX, locationY, length, width, height) { }
 
         public void AddItem(ElementalUnit item) {
             item.Parent = this;

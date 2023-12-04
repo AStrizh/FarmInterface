@@ -10,7 +10,6 @@ namespace FarmInterface
     {
         public string Name { get; set; }
         public decimal PurchasePrice { get; set; }
-        public decimal CurrentPrice { get; set; }
         public int LocationX { get; set; }
         public int LocationY { get; set; }
         public double Length { get; set; }
@@ -19,11 +18,10 @@ namespace FarmInterface
 
         public ElementalUnit Parent { get; set; }
 
-        protected AbstractItem(string name, decimal purchasePrice, decimal currentPrice, int locationX, int locationY, double length, double width, double height)
+        protected AbstractItem(string name, decimal purchasePrice, int locationX, int locationY, double length, double width, double height)
         {
             Name = name;
             PurchasePrice = purchasePrice;
-            CurrentPrice = currentPrice;
             LocationX = locationX;
             LocationY = locationY;
             Length = length;

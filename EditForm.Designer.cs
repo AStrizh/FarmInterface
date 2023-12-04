@@ -30,13 +30,13 @@
         {
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameText = new System.Windows.Forms.TextBox();
-            this.currentpLabel = new System.Windows.Forms.Label();
+            this.currentPriceLabel = new System.Windows.Forms.Label();
             this.locationXLabel = new System.Windows.Forms.Label();
             this.locationYLabel = new System.Windows.Forms.Label();
             this.lengthLabel = new System.Windows.Forms.Label();
             this.widthLabel = new System.Windows.Forms.Label();
             this.heightLabel = new System.Windows.Forms.Label();
-            this.currentpText = new System.Windows.Forms.TextBox();
+            this.currentPriceText = new System.Windows.Forms.TextBox();
             this.xLocText = new System.Windows.Forms.TextBox();
             this.yLocText = new System.Windows.Forms.TextBox();
             this.lengthText = new System.Windows.Forms.TextBox();
@@ -45,8 +45,8 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.itemRadio = new System.Windows.Forms.RadioButton();
             this.itemContainerRadio = new System.Windows.Forms.RadioButton();
-            this.purchasepText = new System.Windows.Forms.TextBox();
-            this.purchasepLabel = new System.Windows.Forms.Label();
+            this.purchasePriceText = new System.Windows.Forms.TextBox();
+            this.purchasePriceLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -65,14 +65,14 @@
             this.nameText.Size = new System.Drawing.Size(176, 22);
             this.nameText.TabIndex = 1;
             // 
-            // currentpLabel
+            // currentPriceLabel
             // 
-            this.currentpLabel.AutoSize = true;
-            this.currentpLabel.Location = new System.Drawing.Point(53, 154);
-            this.currentpLabel.Name = "currentpLabel";
-            this.currentpLabel.Size = new System.Drawing.Size(86, 16);
-            this.currentpLabel.TabIndex = 2;
-            this.currentpLabel.Text = "Current Price:";
+            this.currentPriceLabel.AutoSize = true;
+            this.currentPriceLabel.Location = new System.Drawing.Point(8, 154);
+            this.currentPriceLabel.Name = "currentPriceLabel";
+            this.currentPriceLabel.Size = new System.Drawing.Size(134, 16);
+            this.currentPriceLabel.TabIndex = 2;
+            this.currentPriceLabel.Text = "Current Market Value:";
             // 
             // locationXLabel
             // 
@@ -119,12 +119,12 @@
             this.heightLabel.TabIndex = 7;
             this.heightLabel.Text = "Height:";
             // 
-            // currentpText
+            // currentPriceText
             // 
-            this.currentpText.Location = new System.Drawing.Point(146, 152);
-            this.currentpText.Name = "currentpText";
-            this.currentpText.Size = new System.Drawing.Size(176, 22);
-            this.currentpText.TabIndex = 8;
+            this.currentPriceText.Location = new System.Drawing.Point(146, 152);
+            this.currentPriceText.Name = "currentPriceText";
+            this.currentPriceText.Size = new System.Drawing.Size(176, 22);
+            this.currentPriceText.TabIndex = 8;
             // 
             // xLocText
             // 
@@ -182,6 +182,7 @@
             this.itemRadio.Text = "Add Item";
             this.itemRadio.UseVisualStyleBackColor = true;
             this.itemRadio.Visible = false;
+            this.itemRadio.CheckedChanged += new System.EventHandler(this.itemRadio_CheckedChanged);
             // 
             // itemContainerRadio
             // 
@@ -194,30 +195,31 @@
             this.itemContainerRadio.Text = "Add Container";
             this.itemContainerRadio.UseVisualStyleBackColor = true;
             this.itemContainerRadio.Visible = false;
+            this.itemContainerRadio.CheckedChanged += new System.EventHandler(this.itemContainerRadio_CheckedChanged);
             // 
-            // purchasepText
+            // purchasePriceText
             // 
-            this.purchasepText.Location = new System.Drawing.Point(145, 110);
-            this.purchasepText.Name = "purchasepText";
-            this.purchasepText.Size = new System.Drawing.Size(176, 22);
-            this.purchasepText.TabIndex = 18;
+            this.purchasePriceText.Location = new System.Drawing.Point(145, 110);
+            this.purchasePriceText.Name = "purchasePriceText";
+            this.purchasePriceText.Size = new System.Drawing.Size(176, 22);
+            this.purchasePriceText.TabIndex = 18;
             // 
-            // purchasepLabel
+            // purchasePriceLabel
             // 
-            this.purchasepLabel.AutoSize = true;
-            this.purchasepLabel.Location = new System.Drawing.Point(38, 113);
-            this.purchasepLabel.Name = "purchasepLabel";
-            this.purchasepLabel.Size = new System.Drawing.Size(101, 16);
-            this.purchasepLabel.TabIndex = 17;
-            this.purchasepLabel.Text = "Purchase Price:";
+            this.purchasePriceLabel.AutoSize = true;
+            this.purchasePriceLabel.Location = new System.Drawing.Point(38, 113);
+            this.purchasePriceLabel.Name = "purchasePriceLabel";
+            this.purchasePriceLabel.Size = new System.Drawing.Size(101, 16);
+            this.purchasePriceLabel.TabIndex = 17;
+            this.purchasePriceLabel.Text = "Purchase Price:";
             // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 477);
-            this.Controls.Add(this.purchasepText);
-            this.Controls.Add(this.purchasepLabel);
+            this.Controls.Add(this.purchasePriceText);
+            this.Controls.Add(this.purchasePriceLabel);
             this.Controls.Add(this.itemContainerRadio);
             this.Controls.Add(this.itemRadio);
             this.Controls.Add(this.saveButton);
@@ -226,13 +228,13 @@
             this.Controls.Add(this.lengthText);
             this.Controls.Add(this.yLocText);
             this.Controls.Add(this.xLocText);
-            this.Controls.Add(this.currentpText);
+            this.Controls.Add(this.currentPriceText);
             this.Controls.Add(this.heightLabel);
             this.Controls.Add(this.widthLabel);
             this.Controls.Add(this.lengthLabel);
             this.Controls.Add(this.locationYLabel);
             this.Controls.Add(this.locationXLabel);
-            this.Controls.Add(this.currentpLabel);
+            this.Controls.Add(this.currentPriceLabel);
             this.Controls.Add(this.nameText);
             this.Controls.Add(this.nameLabel);
             this.Name = "EditForm";
@@ -246,13 +248,13 @@
 
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.TextBox nameText;
-        private System.Windows.Forms.Label currentpLabel;
+        private System.Windows.Forms.Label currentPriceLabel;
         private System.Windows.Forms.Label locationXLabel;
         private System.Windows.Forms.Label locationYLabel;
         private System.Windows.Forms.Label lengthLabel;
         private System.Windows.Forms.Label widthLabel;
         private System.Windows.Forms.Label heightLabel;
-        private System.Windows.Forms.TextBox currentpText;
+        private System.Windows.Forms.TextBox currentPriceText;
         private System.Windows.Forms.TextBox xLocText;
         private System.Windows.Forms.TextBox yLocText;
         private System.Windows.Forms.TextBox lengthText;
@@ -261,7 +263,7 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.RadioButton itemRadio;
         private System.Windows.Forms.RadioButton itemContainerRadio;
-        private System.Windows.Forms.TextBox purchasepText;
-        private System.Windows.Forms.Label purchasepLabel;
+        private System.Windows.Forms.TextBox purchasePriceText;
+        private System.Windows.Forms.Label purchasePriceLabel;
     }
 }
