@@ -9,7 +9,7 @@ namespace FarmInterface
     internal class Item : AbstractItem
     {
         //All functions inherited from parent
-        public Item(string name, decimal price, int locationX, int locationY, double length, double width, double height)
-    : base(name, price, locationX, locationY, length, width, height) { }
+        public Item(string name, decimal purchasePrice, decimal currentPrice, int locationX, int locationY, double length, double width, double height)
+    : base(name, purchasePrice, currentPrice, locationX, locationY, length, width, height) { }
     }
 }

@@ -40,11 +40,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.inspectButton = new System.Windows.Forms.Button();
-            this.scanButton = new System.Windows.Forms.Button();
-            this.inspectLabel = new System.Windows.Forms.Label();
             this.scanLabel = new System.Windows.Forms.Label();
+            this.inspectLabel = new System.Windows.Forms.Label();
+            this.scanButton = new System.Windows.Forms.Button();
+            this.inspectButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +61,7 @@
             // 
             // populate
             // 
-            this.populate.Location = new System.Drawing.Point(70, 461);
+            this.populate.Location = new System.Drawing.Point(70, 423);
             this.populate.Name = "populate";
             this.populate.Size = new System.Drawing.Size(114, 32);
             this.populate.TabIndex = 9;
@@ -78,7 +78,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(190, 379);
+            this.deleteButton.Location = new System.Drawing.Point(215, 379);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(75, 23);
             this.deleteButton.TabIndex = 11;
@@ -89,11 +89,11 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(109, 379);
+            this.editButton.Location = new System.Drawing.Point(93, 379);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(75, 23);
+            this.editButton.Size = new System.Drawing.Size(116, 23);
             this.editButton.TabIndex = 12;
-            this.editButton.Text = "Edit";
+            this.editButton.Text = "Review/Edit";
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
@@ -118,7 +118,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(26, 379);
+            this.addButton.Location = new System.Drawing.Point(12, 379);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 15;
@@ -148,41 +148,20 @@
             this.panel1.Controls.Add(this.inspectLabel);
             this.panel1.Controls.Add(this.scanButton);
             this.panel1.Controls.Add(this.inspectButton);
-            this.panel1.Location = new System.Drawing.Point(12, 573);
+            this.panel1.Location = new System.Drawing.Point(12, 625);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(275, 160);
             this.panel1.TabIndex = 17;
             // 
-            // label3
+            // scanLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(76, 545);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 25);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Inspection";
-            // 
-            // inspectButton
-            // 
-            this.inspectButton.Location = new System.Drawing.Point(13, 13);
-            this.inspectButton.Name = "inspectButton";
-            this.inspectButton.Size = new System.Drawing.Size(75, 23);
-            this.inspectButton.TabIndex = 0;
-            this.inspectButton.Text = "Inspect";
-            this.inspectButton.UseVisualStyleBackColor = true;
-            this.inspectButton.Click += new System.EventHandler(this.inspectButton_Click);
-            // 
-            // scanButton
-            // 
-            this.scanButton.Location = new System.Drawing.Point(13, 83);
-            this.scanButton.Name = "scanButton";
-            this.scanButton.Size = new System.Drawing.Size(75, 23);
-            this.scanButton.TabIndex = 1;
-            this.scanButton.Text = "Scan";
-            this.scanButton.UseVisualStyleBackColor = true;
-            this.scanButton.Click += new System.EventHandler(this.scanButton_Click);
+            this.scanLabel.AutoSize = true;
+            this.scanLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scanLabel.Location = new System.Drawing.Point(117, 83);
+            this.scanLabel.Name = "scanLabel";
+            this.scanLabel.Size = new System.Drawing.Size(122, 40);
+            this.scanLabel.TabIndex = 3;
+            this.scanLabel.Text = "Scan the entire\r\nproperty\r\n";
             // 
             // inspectLabel
             // 
@@ -194,15 +173,36 @@
             this.inspectLabel.TabIndex = 2;
             this.inspectLabel.Text = "Send Drone to \r\nselected location";
             // 
-            // scanLabel
+            // scanButton
             // 
-            this.scanLabel.AutoSize = true;
-            this.scanLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scanLabel.Location = new System.Drawing.Point(117, 83);
-            this.scanLabel.Name = "scanLabel";
-            this.scanLabel.Size = new System.Drawing.Size(122, 40);
-            this.scanLabel.TabIndex = 3;
-            this.scanLabel.Text = "Scan the entire\r\nproperty\r\n";
+            this.scanButton.Location = new System.Drawing.Point(13, 83);
+            this.scanButton.Name = "scanButton";
+            this.scanButton.Size = new System.Drawing.Size(75, 23);
+            this.scanButton.TabIndex = 1;
+            this.scanButton.Text = "Scan";
+            this.scanButton.UseVisualStyleBackColor = true;
+            this.scanButton.Click += new System.EventHandler(this.scanButton_Click);
+            // 
+            // inspectButton
+            // 
+            this.inspectButton.Location = new System.Drawing.Point(13, 13);
+            this.inspectButton.Name = "inspectButton";
+            this.inspectButton.Size = new System.Drawing.Size(75, 23);
+            this.inspectButton.TabIndex = 0;
+            this.inspectButton.Text = "Inspect";
+            this.inspectButton.UseVisualStyleBackColor = true;
+            this.inspectButton.Click += new System.EventHandler(this.inspectButton_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(76, 597);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(111, 25);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Inspection";
             // 
             // MainForm
             // 

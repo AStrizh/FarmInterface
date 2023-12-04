@@ -46,7 +46,8 @@ namespace FarmInterface
 
             if (unitToEdit != null) { 
                 nameText.Text = unitToEdit.Name;
-                priceText.Text = unitToEdit.Price.ToString();
+                purchasepText.Text = unitToEdit.PurchasePrice.ToString();
+                currentpText.Text = unitToEdit.CurrentPrice.ToString();
                 xLocText.Text = unitToEdit.LocationX.ToString();
                 yLocText.Text = unitToEdit.LocationY.ToString();
                 lengthText.Text = unitToEdit.Length.ToString();
@@ -61,7 +62,8 @@ namespace FarmInterface
             if(isEditMode)
             {
                 unitToEdit.Name = nameText.Text;
-                unitToEdit.Price = Decimal.Parse(priceText.Text);
+                unitToEdit.PurchasePrice = Decimal.Parse(purchasepText.Text);
+                unitToEdit.CurrentPrice = Decimal.Parse(currentpText.Text);
                 unitToEdit.LocationX = Int32.Parse(xLocText.Text);
                 unitToEdit.LocationY = Int32.Parse(yLocText.Text);
                 unitToEdit.Length = Double.Parse(lengthText.Text);
@@ -76,7 +78,8 @@ namespace FarmInterface
                 {
                     newElement = new ItemContainer(
                         nameText.Text,
-                        Decimal.Parse(priceText.Text),
+                        Decimal.Parse(purchasepText.Text),
+                        Decimal.Parse(currentpText.Text),
                         Int32.Parse(xLocText.Text), 
                         Int32.Parse(yLocText.Text), 
                         Double.Parse(lengthText.Text), 
@@ -88,7 +91,8 @@ namespace FarmInterface
 
                     newElement = new Item(
                     nameText.Text,
-                    Decimal.Parse(priceText.Text),
+                    Decimal.Parse(purchasepText.Text),
+                    Decimal.Parse(currentpText.Text),
                     Int32.Parse(xLocText.Text),
                     Int32.Parse(yLocText.Text),
                     Double.Parse(lengthText.Text),

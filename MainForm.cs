@@ -13,7 +13,7 @@ namespace FarmInterface
 {
     public partial class MainForm : Form
     {
-        private ItemContainer rootContainer = new ItemContainer("Farm", 0.00m, 0, 0, 0, 0, 0);
+        private ItemContainer rootContainer = new ItemContainer("Farm", 0.00m, 0.00m, 0, 0, 0, 0, 0);
         private FarmPanel farmPanel;
 
         //These are for drone movement
