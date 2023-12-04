@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FarmInterface
 {
-    public class AbstractItem : ElementalUnit
+    public abstract class AbstractItem : ElementalUnit
     {
         public string Name { get; set; }
         public decimal PurchasePrice { get; set; }
@@ -29,9 +29,12 @@ namespace FarmInterface
             Height = height;
         }
 
+
         public virtual void Delete(ElementalUnit unit)
         {
             Parent?.Delete(unit);
         }
+
+        public abstract void Accept(IElementVisitor visitor);
     }
 }

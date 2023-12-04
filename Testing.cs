@@ -29,7 +29,7 @@ namespace FarmInterface
             var tractor = new Item("Tractor", 15000.00m, 11300.00m, 425, 75, 25, 75, 0);
             storageBuilding.AddItem(tractor);
 
-            var tiller = new Item("Tiller",1000.00m, 7500.00m, 500, 110, 20, 15, 1);
+            var tiller = new Item("Tiller",1000.00m, 750.00m, 500, 110, 20, 15, 1);
             storageBuilding.AddItem(tiller);
 
             var commandCenter = new ItemContainer("Command Center", 3500.00m, 50, 50, 150, 250, 0);

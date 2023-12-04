@@ -265,5 +265,18 @@ namespace FarmInterface
             allElementPositions.RemoveAt(0); 
             animationTimer.Start();
         }
+
+        private void treeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Tag is ElementalUnit unit)
+            {
+                PricingVisitor visitor = new PricingVisitor();
+                unit.Accept(visitor);
+
+                // Update the UI label with the calculated prices
+                displayTotalPurchase.Text = $"Purchase Price: {visitor.TotalPurchasePrice}";
+                displayCurrentPrice.Text = $"Current Price: {visitor.TotalCurrentPrice}";
+            }
+        }
     }
 }

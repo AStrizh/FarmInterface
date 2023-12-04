@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FarmInterface
 {
-    internal class Item : AbstractItem
+    public class Item : AbstractItem
     {
 
         public decimal CurrentPrice { get; set; }
@@ -16,5 +16,11 @@ namespace FarmInterface
         {
             CurrentPrice = currentPrice;
         }
+
+        public override void Accept(IElementVisitor visitor)
+        {
+            visitor.VisitItem(this);
+        }
+
     }
 }

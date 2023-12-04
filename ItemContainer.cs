@@ -36,5 +36,14 @@ namespace FarmInterface
             }
         }
 
+        public override void Accept(IElementVisitor visitor)
+        {
+            visitor.VisitItemContainer(this);
+            foreach (var child in Children)
+            {
+                child.Accept(visitor); // Recursive call
+            }
+        }
+
     }
 }

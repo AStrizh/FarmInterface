@@ -45,6 +45,8 @@
             this.scanButton = new System.Windows.Forms.Button();
             this.inspectButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.displayTotalPurchase = new System.Windows.Forms.Label();
+            this.displayCurrentPrice = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +77,7 @@
             this.treeView.Name = "treeView";
             this.treeView.Size = new System.Drawing.Size(239, 282);
             this.treeView.TabIndex = 10;
+            this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_NodeMouseClick);
             // 
             // deleteButton
             // 
@@ -204,9 +207,31 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "Inspection";
             // 
+            // displayTotalPurchase
+            // 
+            this.displayTotalPurchase.AutoSize = true;
+            this.displayTotalPurchase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayTotalPurchase.Location = new System.Drawing.Point(12, 506);
+            this.displayTotalPurchase.Name = "displayTotalPurchase";
+            this.displayTotalPurchase.Size = new System.Drawing.Size(166, 25);
+            this.displayTotalPurchase.TabIndex = 19;
+            this.displayTotalPurchase.Text = "Purchase Price: 0";
+            // 
+            // displayCurrentPrice
+            // 
+            this.displayCurrentPrice.AutoSize = true;
+            this.displayCurrentPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayCurrentPrice.Location = new System.Drawing.Point(7, 546);
+            this.displayCurrentPrice.Name = "displayCurrentPrice";
+            this.displayCurrentPrice.Size = new System.Drawing.Size(220, 25);
+            this.displayCurrentPrice.TabIndex = 20;
+            this.displayCurrentPrice.Text = "Current Market Value: 0";
+            // 
             // MainForm
             // 
             this.ClientSize = new System.Drawing.Size(999, 905);
+            this.Controls.Add(this.displayCurrentPrice);
+            this.Controls.Add(this.displayTotalPurchase);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
@@ -245,6 +270,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label scanLabel;
         private System.Windows.Forms.Label inspectLabel;
+        public System.Windows.Forms.Label displayTotalPurchase;
+        public System.Windows.Forms.Label displayCurrentPrice;
     }
 }
 

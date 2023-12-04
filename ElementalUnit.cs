@@ -22,7 +22,7 @@ namespace FarmInterface
 
         ElementalUnit Parent { get; set; }
 
-
+        void Accept(IElementVisitor visitor);
         void Delete(ElementalUnit unit);
 
     }
