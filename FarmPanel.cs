@@ -59,6 +59,10 @@ namespace FarmInterface
 
         public void DisplayLabels()
         {
+            // Clear existing labels
+            ClearLabels();
+
+            // Display updated labels
             DisplayElementLabel(RootContainer);
         }
 
@@ -89,6 +93,19 @@ namespace FarmInterface
         {
             DroneRectangle = new Rectangle(x, y, DroneRectangle.Width, DroneRectangle.Height);
             this.Invalidate();
+        }
+
+        private void ClearLabels()
+        {
+            // Create a list of labels to remove
+            var labelsToRemove = this.Controls.OfType<Label>().ToList();
+
+            // Remove each label from the controls
+            foreach (var label in labelsToRemove)
+            {
+                this.Controls.Remove(label);
+                label.Dispose(); // Properly dispose the label
+            }
         }
     }
 }

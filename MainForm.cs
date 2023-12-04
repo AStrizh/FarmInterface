@@ -126,6 +126,7 @@ namespace FarmInterface
                 // After editing, update the TreeView if necessary
                 treeView.SelectedNode.Text = selectedUnit.Name;
             }
+            // Update FarmPanel
             farmPanel.DisplayLabels();
             farmPanel.Invalidate();
         }
